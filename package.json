@@ -1,0 +1,24 @@
+{
+  "name": "@dvo/stamp",
+  "version": "0.0.1",
+  "description": "Tool for lightweight componentization.",
+  "main": "stamp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isacvale/dvo-stamp.git"
+  },
+  "keywords": [
+    "component",
+    "vanilla",
+    "template"
+  ],
+  "author": "isacvale",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isacvale/dvo-stamp/issues"
+  },
+  "homepage": "https://github.com/isacvale/dvo-stamp#readme"
+}

@@ -1,0 +1,9 @@
+.*
+~*
+!.gitignore
+node_modules/
+ehthumbs.db
+Thumbs.db
+*.log
+*.rar
+*.zip

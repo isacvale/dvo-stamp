@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+    <template id="tpl-hello">
+      <p>hello <span>world</span></p>
+    </template>
+    <template id="tpl-goodbye">
+      <p>goodbye <span>world</span></p>
+    </template>
+  </div>
+  <hr>
+  <div id="alt-container"></div>
+  <script type="module">
+    import Stamp from './stamp.js'
+    window.onload = function () {
+      Stamp('#tpl-hello')
+        .alias('foo')
+        .change(el => el.querySelector('span').textContent = "friend")
+        .stamp()
+        .clear()
+      .get('#tpl-goodbye')
+        .change(el => el.querySelector('span').textContent = "friend")
+        .stamp()
+      .get('foo')
+        .clear()
+        .stamp()
+        .clearAll()
+        .target("#alt-container")
+        .stamp()
+        .stamp()
+        .stamp()
+        .keep(2)
+        .clear()
+        .clearAll()
+        .cap(3)
+        .stamp()
+        .stamp()
+        .stamp()
+        .stamp()
+        .execute(x => console.log(x))
+        .debug()
+    }
+  </script>
+</body>
+</html>
