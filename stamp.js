@@ -1,16 +1,11 @@
 const stampData = {}
 const aliasData = {}
 
-window.$$ = [
-  stampData,
-  aliasData
-]
 const identity = x => x
 
 function StampData (selector) {
   this.selector = selector
   this.template = document.querySelector(selector)
-  // this.targetSelector = null
   this.target = this.template.parentElement
   this.cap = Infinity
   this.keep = 0
@@ -20,7 +15,6 @@ function StampData (selector) {
 function createNewStamp (selector) {
   stampData[selector] = new StampData(selector)
 }
-
 
 function Stamp (selector) {
   let data = {}
@@ -47,14 +41,19 @@ function Stamp (selector) {
       data = stampData[lookup]
       return this
     },
-    stamp () {
+    stamp (callback) {
+      console.log('?', !!callback)
       if (count() < data.cap) {
-        console.log('!!', count(), data.cap)
+        const target = data.target
         const clone = data.template.content.cloneNode(true)
         const cloneContent = clone.firstElementChild
         data.mutator(cloneContent)
         cloneContent.setAttribute('data-_stamp', data.selector)
-        data.target.append(clone)
+        target.append(clone)
+        if (callback) {
+          console.log('cbk', callback, target.lastElementChild)
+          callback(target.lastElementChild)
+        }
       }
       return this
     },
@@ -67,7 +66,6 @@ function Stamp (selector) {
       return this
     },
     target (targetSelector) {
-      // data.targetSelector = targetSelector
       data.target = document.querySelector(targetSelector)
       return this
     },
@@ -96,7 +94,7 @@ function Stamp (selector) {
       return this
     },
     debug () {
-      console.log('stamp data:', data)
+      console.debug('stamp data:', data)
       return this
     }
   }

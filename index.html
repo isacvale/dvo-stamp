@@ -40,11 +40,11 @@
         .clear()
         .clearAll()
         .cap(3)
+        .stamp(el => el.setAttribute('doesCallbackWork', 'ohYeah'))
         .stamp()
         .stamp()
         .stamp()
-        .stamp()
-        .execute(x => console.log(x))
+        .execute(x => console.log('---', x))
         .debug()
     }
   </script>

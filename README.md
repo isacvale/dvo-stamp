@@ -82,7 +82,7 @@ And there's some extra minor functionalities you can check out at the API sectio
 ## API
 - `get()` <small>:string</small> Load a template by passing its selector. `Stamp('selector')` and `Stamp.get('selector')` are synonymous.
 
-- `stamp()` Creates the component from the template, mutates it and appends to the target (by default, the template's container).
+- `stamp()` <small>:function</small> Creates the component from the template, mutates it and appends to the target (by default, the template's container). If an argument function is passed, it will be run against the element *after* it is appended.
 - `alias()` <small>:string</small> Give the current stamp an alias, so it's easy to retrieve it later by calling `Stamp.get(alias)`.
 - `change()` <small>:function</small> Defines a mutator function to be called just before stamping. The function receives the component instance **before** it is appended to the DOM, so manipulations on it are cheaper and you don't get FOUC.
 - `target()` <small>:string</small> Pass a selector to define a new target for the stamp. By default, the target is the template's parent element.
