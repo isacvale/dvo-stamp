@@ -2,6 +2,7 @@
 ~*
 !.gitignore
 !.npmignore
+!.editorconfig
 node_modules/
 ehthumbs.db
 Thumbs.db
