@@ -26,8 +26,9 @@ function Stamp (selector) {
 
   function deleteElements (list) {
     list.forEach((el, idx) => {
-      if (idx >= data.keep)
+      if (idx >= data.keep) {
         el.parentElement.removeChild(el)
+      }
     })
   }
 
@@ -36,8 +37,9 @@ function Stamp (selector) {
       const lookup = aliasData[selector]
         ? aliasData[selector]
         : selector
-      if (!stampData[lookup])
+      if (!stampData[lookup]) {
         createNewStamp(lookup)
+      }
       data = stampData[lookup]
       return this
     },
@@ -85,7 +87,7 @@ function Stamp (selector) {
     },
     clearAll () {
       const children = Array.from(data.target.children)
-        .filter(el => el.tagName != 'TEMPLATE')
+        .filter(el => el.tagName !== 'TEMPLATE')
       deleteElements(children)
       return this
     },

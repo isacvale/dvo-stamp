@@ -3,6 +3,7 @@
 !.gitignore
 !.npmignore
 !.editorconfig
+!.babelrc
 node_modules/
 ehthumbs.db
 Thumbs.db
