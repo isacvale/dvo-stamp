@@ -1,9 +1,11 @@
 .*
 ~*
 !.gitignore
+!.npmignore
 node_modules/
 ehthumbs.db
 Thumbs.db
 *.log
 *.rar
 *.zip
+lib/
