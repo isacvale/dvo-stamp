@@ -44,7 +44,6 @@ function Stamp (selector) {
       return this
     },
     stamp (callback) {
-      console.log('?', !!callback)
       if (count() < data.cap) {
         const target = data.target
         const clone = data.template.content.cloneNode(true)
@@ -53,7 +52,6 @@ function Stamp (selector) {
         cloneContent.setAttribute('data-_stamp', data.selector)
         target.append(clone)
         if (callback) {
-          console.log('cbk', callback, target.lastElementChild)
           callback(target.lastElementChild)
         }
       }
