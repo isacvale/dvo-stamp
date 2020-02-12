@@ -1,6 +1,6 @@
 {
   "name": "@dvo/stamp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tool for lightweight componentization.",
   "main": "build/stamp.js",
   "scripts": {
