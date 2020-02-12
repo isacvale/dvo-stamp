@@ -93,9 +93,9 @@ function Stamp (selector) {
       func(this)
       return this
     },
-    debug () {
-      console.debug('stamp data:', data)
-      return this
+    debug (returnResult=false) {
+      if (!returnResult) console.debug('stamp data:', data)
+      return returnResult ? data : this
     }
   }
 

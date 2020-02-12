@@ -17,12 +17,19 @@
   </div>
   <hr>
   <div id="alt-container"></div>
+  <!-- <script>var exports = {};</script>
+  <script src="./lib/stamp.min.js"></script> -->
   <script type="module">
-    import Stamp from './stamp.js'
+    import Stamp from './src/stamp.js'
+    // import { Stamp } from './stamp.min.js'
+    // import Stamp from './stamp.min.js'
     window.onload = function () {
+      console.log('fromIndex', Stamp('#tpl-hello').debug(true))
+
       Stamp('#tpl-hello')
         .alias('foo')
         .change(el => el.querySelector('span').textContent = "friend")
+        .debug()
         .stamp()
         .clear()
       .get('#tpl-goodbye')
