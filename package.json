@@ -1,8 +1,8 @@
 {
   "name": "@dvo/stamp",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Tool for lightweight componentization.",
-  "main": "build/stamp.js",
+  "main": "lib/stamp.js",
   "scripts": {
     "test": "jest --watch  --coverage",
     "runtest": "jest --coverage",

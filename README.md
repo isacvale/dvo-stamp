@@ -33,7 +33,7 @@ The HTML would look like:
       <a target="_blank" href="">
         <span className="book-card-title"></span>
       </div>
-      by <span className="book-card-author></span>
+      by <span className="book-card-author"></span>
     </div>
   </template>
 </section>
@@ -91,4 +91,4 @@ And there's some extra minor functionalities you can check out at the API sectio
 - `clear()` Deletes all stamps from the current template in the current target (by default, the template's parent element).
 - `clearAll()` Deletes all elements in the current target, except for `<template>` tags. This will target not only stamps, so use it carefully.
 - `execute()` <small>:function</small> Allows you to run a callback on any point in the chain. The function will receive the stamp object as an argument. Use it for side-effects or debugging.
-- `debug()` A minor tool that logs to the console the current stamp configuration.
+- `debug()` <small>:bool</small> A minor tool that logs to the console the current stamp configuration. A truthy argument will cause debug() to return an object with the data instead of logging to console.
