@@ -1,6 +1,6 @@
 {
   "name": "@dvo/stamp",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Tool for lightweight componentization.",
   "main": "lib/stamp.js",
   "scripts": {

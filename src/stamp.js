@@ -3,21 +3,22 @@ const aliasData = {}
 
 const identity = x => x
 
-function StampData (selector) {
+function StampData (selector, context) {
   this.selector = selector
-  this.template = document.querySelector(selector)
+  this.template = context.querySelector(selector)
   this.target = this.template.parentElement
   this.cap = Infinity
   this.keep = 0
   this.mutator = identity
+  this.context = context
 }
 
-function createNewStamp (selector) {
-  stampData[selector] = new StampData(selector)
+function createNewStamp (selector, context) {
+  stampData[selector] = new StampData(selector, context)
 }
 
-function Stamp (selector) {
-  let data = {}
+function Stamp (selector, config={}) {
+  let data = { context: config.context || document }
 
   function count () {
     const query = `[data-_stamp="${data.selector}"]`
@@ -33,14 +34,20 @@ function Stamp (selector) {
   }
 
   const api = {
-    get (selector) {
-      const lookup = aliasData[selector]
+    get (selector, config={}) {
+      const context = config.context || document
+      const override = config.override || false
+
+      const originalSelector = aliasData[selector]
         ? aliasData[selector]
         : selector
-      if (!stampData[lookup]) {
-        createNewStamp(lookup)
+        
+      if (!stampData[originalSelector] || override || config.context) {
+        createNewStamp(originalSelector, context)
       }
-      data = stampData[lookup]
+
+      data = stampData[originalSelector]
+      
       return this
     },
     stamp (callback) {
@@ -66,7 +73,11 @@ function Stamp (selector) {
       return this
     },
     target (targetSelector) {
-      data.target = document.querySelector(targetSelector)
+      data.target = data.context.querySelector(targetSelector)
+      return this
+    },
+    context (element=document) {
+      data.context = element
       return this
     },
     keep (keepAmount) {
@@ -99,7 +110,7 @@ function Stamp (selector) {
     }
   }
 
-  if (selector) api.get(selector)
+  if (selector) api.get(selector, config)
   return api
 }
 

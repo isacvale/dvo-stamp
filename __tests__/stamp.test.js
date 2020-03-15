@@ -12,6 +12,23 @@ document.body.innerHTML =
 </div>
 <div id="alt-container">
 </div>
+
+<div class="context common-context">
+  <template class="tpl-trap">
+    <p data-case="wrong">wrong</p>
+  </template>
+</div>
+
+<div class="context alternate-context">
+  <template class="tpl-trap">
+    <p data-case="right">right</p>
+  </template>
+</div>
+
+<div class="context-target"></div>
+<div class="context-target-alt">
+  <div class="context-target"></div>
+<div>
 `
 
 test('Selects a template', () => {
@@ -232,6 +249,72 @@ test('Get stamp by alias', () => {
   expect(stamp.template.id).toBe('tpl-hello')
 })
 
+test('Can switch contexts between stamps', () => {
+  const altContext = document.querySelector('.alternate-context')
+
+  // Stamp in default context
+  Stamp('.tpl-trap')
+    .alias('outer')
+    .stamp()
+    .get('.tpl-trap', { context: altContext })
+    .alias('inner')
+    .stamp()
+  
+  // Stringify results
+  const results = Array.from(document.querySelectorAll('.context'))
+    .map(context => context
+      ? context.querySelector('p').getAttribute('data-case')
+      : 'empty')
+    .join('-')
+
+  expect(results).toEqual('wrong-right')
+})
+
+test('Can switch contexts between stamps repeatedly', () => {
+  const altContext = document.querySelector('.alternate-context')
+
+  // Stamp in default context
+  Stamp('.tpl-trap')
+    .alias('outer')
+    .clear()
+    .stamp()
+    .get('.tpl-trap', { context: altContext })
+    .alias('inner')
+    .clear()
+    .stamp()
+
+    .get('outer', { override: true })
+    .stamp()
+    .get('inner', { context: altContext })
+    .stamp()
+    .context()
+
+  // Stringify results
+  const results = Array.from(document.querySelectorAll('.context'))
+    .map(x => x.children.length)
+
+  expect(results).toEqual([3, 3])
+})
+
+test('Can switch contexts without switching stamps', () => {
+  const altContext = document.querySelector('.context-target-alt')
+
+  // Stamp in default context
+  Stamp('.tpl-trap')
+    .target('.context-target')
+    .stamp()
+    .context(altContext)
+    .target('.context-target')
+    .stamp()
+  
+  // Stringify results
+  const results = Array.from(document.querySelectorAll('.context-target'))
+    .map(x => x.children.length)
+
+  expect(results).toEqual([1, 1])
+})
+
+
 // window.onload = function () {
 //   Stamp('#tpl-hello')
 //     .alias('foo')
@@ -260,3 +343,6 @@ test('Get stamp by alias', () => {
 //     .execute(x => console.log('---', x))
 //     .debug()
 // }
+
+//TODO teste get
+//TODO test override on get
