@@ -29,6 +29,12 @@ document.body.innerHTML =
 <div class="context-target-alt">
   <div class="context-target"></div>
 <div>
+
+<div class="custom-container">
+  <template id="tpl-custom-element">
+    <custom-element><div></div></custom-element>
+  </template>
+</div>
 `
 
 test('Selects a template', () => {
@@ -213,6 +219,15 @@ test('Calls stamp callbacks', () => {
 
   expect(works).toBe(true)
 })
+
+// // Commented because Jest doesn't support custom elements yet.
+// test('Don\'t call callbacks on an unititiated custom-element.', () => {
+//   let works = false
+//   const changeWorks = () => works = true
+//   Stamp('#tpl-custom-element')
+//     .stamp(changeWorks)
+//   expect(works).toBe(false)
+// })
 
 test('Calls execute callbacks', () => {
   let works = false

@@ -152,6 +152,6 @@ In the example above, the baz template was on the document, outside of the conte
 
 - `keep()` <small>:number</small> Set the number of the component's instances you **do not** want to delete when calling `clear()` or `clearAll()`. This setting will spare the first *n* components found.
 
-- `stamp()` <small>:function</small> Creates the component from the template, mutates it and appends to the target (by default, the template's container). If an argument function is passed, it will be run against the element *after* it is appended.
+- `stamp()` <small>:function</small> Creates the component from the template, mutates it and appends to the target (by default, the template's container). If an argument function is passed, it will be run against the element *after* it is appended. In the case of a web-component, the callback will run after the component is defined, so it's reliable to call on their methods.
 
 - `target()` <small>:string</small> Pass a selector to define a new target for the stamp. By default, the target is the template's parent element.

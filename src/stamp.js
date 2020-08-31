@@ -59,7 +59,14 @@ function Stamp (selector, config={}) {
         cloneContent.setAttribute('data-_stamp', data.selector)
         target.append(clone)
         if (callback) {
-          callback(target.lastElementChild)
+          const appendedElement = target.lastElementChild
+          const tag = appendedElement.tagName.toLowerCase()
+          if (tag.includes('-')) {
+            customElements.whenDefined(tag)
+              .then(() => callback(appendedElement))
+          } else {
+            callback(appendedElement)
+          }
         }
       }
       return this

@@ -1,10 +1,10 @@
 {
   "name": "@dvo/stamp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tool for lightweight componentization.",
   "main": "lib/stamp.js",
   "scripts": {
-    "test": "jest --watch  --coverage",
+    "test": "jest --watch --coverage",
     "runtest": "jest --coverage",
     "build": "babel ./src -d ./lib && mv ./lib/stamp.js ./lib/stamp.min.js && cp ./src/stamp.js ./lib/stamp.js",
     "lint": "standard",
@@ -26,12 +26,12 @@
   },
   "homepage": "https://github.com/isacvale/dvo-stamp#readme",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
-    "@babel/preset-env": "^7.8.7",
-    "babel-jest": "^25.1.0",
-    "jest": "^25.1.0",
-    "standard": "^14.3.1"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "babel-jest": "^25.5.1",
+    "jest": "^25.5.4",
+    "standard": "^14.3.4"
   },
   "nyc": {
     "reporter": [
